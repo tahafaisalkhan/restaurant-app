@@ -20,6 +20,7 @@ This project is a Restaurant Management System built using the MERN stack. It se
 #### Home
 - The landing page for both logged-in and logged-out users.
 <img width="1440" alt="Screenshot 2024-06-20 at 11 40 16 PM" src="https://github.com/tahafaisalkhan/restaurant-management/assets/157153519/ea776129-0205-4c0b-a1f2-8ab9def27f29">
+<img width="1440" alt="Screenshot 2024-06-20 at 11 44 30 PM" src="https://github.com/tahafaisalkhan/restaurant-management/assets/157153519/dfb503d6-c9cc-45c2-a5df-963f652f31ff">
 
 
 #### Sign Up
@@ -27,7 +28,6 @@ This project is a Restaurant Management System built using the MERN stack. It se
 - Customers can sign up with their full name, username, password, and a role field defaulting to "Customer".
 - Unique username validation.
 <img width="1439" alt="Screenshot 2024-06-20 at 11 40 22 PM" src="https://github.com/tahafaisalkhan/restaurant-management/assets/157153519/5401b279-7032-4920-8914-eb0ce5caa8c3">
-<img width="1440" alt="Screenshot 2024-06-20 at 11 44 30 PM" src="https://github.com/tahafaisalkhan/restaurant-management/assets/157153519/9325e1d6-27e1-4c40-87e9-86c66cba824e">
 
 
 #### Login
