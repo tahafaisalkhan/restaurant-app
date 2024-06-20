@@ -1,0 +1,61 @@
+.body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px; /* Match the max-width with the Menu section */
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; /* Centered content for a balanced look */
+}
+
+h2,
+h3 {
+  color: #333;
+}
+
+.profile_details {
+  margin-bottom: 20px;
+}
+
+.orders {
+  display: flex; /* Use flex to match the Menu section */
+  flex-wrap: wrap; /* Allow the items to wrap onto multiple lines */
+  justify-content: space-between; /* Distribute items evenly */
+}
+
+.order_card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px); /* Three items per row, with 20px gap */
+  margin-bottom: 20px; /* Space between rows */
+}
+
+.order_details p {
+  margin: 5px 0;
+}
+
+.order_details p strong {
+  font-weight: bold;
+}
+
+button {
+  width: 100%;
+  padding: 15px; /* Increased padding for a bigger, easier-to-click button */
+  background-color: #008CBA;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 20px; /* Increased border radius for a softer look */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #007B9E;
+}

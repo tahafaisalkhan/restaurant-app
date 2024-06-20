@@ -1,0 +1,63 @@
+.body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 150px; /* Add this line */
+    text-align: center;
+}
+
+h2,
+h3 {
+    color: #333;
+}
+
+.profile_details {
+    margin-bottom: 20px;
+}
+
+.orders {
+    display: grid; /* Use CSS Grid for more control over layout */
+    grid-template-columns: repeat(3, 1fr); /* Three items per row */
+    grid-gap: 20px; /* Space between grid items */
+    justify-items: center; /* Center items horizontally */
+}
+
+.order_card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Take up full grid column width */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.order_details p {
+    margin: 5px 0;
+}
+
+.order_details p strong {
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #008CBA;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #007B9E;
+}
