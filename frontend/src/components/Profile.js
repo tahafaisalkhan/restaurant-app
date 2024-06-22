@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileCSS from '../components/modules/Profile.module.css'
-import { Link } from 'react-router-dom';
 import { Navbar } from './navbar'
 import { useEffect, useState } from 'react';
 import axios from 'axios';

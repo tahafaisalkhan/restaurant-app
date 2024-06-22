@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom'
 import OrderCSS from './modules/Order.module.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios'

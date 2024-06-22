@@ -9,59 +9,36 @@ const initialState = {
 };
 
 const orderSlice = createSlice({
-  name: 'auth',
+  name: 'order',
   initialState,
   reducers: {
     addItem(state, action) {
-      let found = false;
-      let index = 0;
-      for(let i = 0; i < state.items_ordered.length; i++) {
-        if(state.items_ordered[i] === action.payload.name) {
-          found = true;
-          index = i;
-          break;
-        }
+      const { name, price } = action.payload;
+      const itemIndex = state.items_ordered.indexOf(name);
+      
+      if (itemIndex !== -1) {
+        state.quantity_ordered[itemIndex] += 1;
+      } else {
+        state.items_ordered.push(name);
+        state.quantity_ordered.push(1);
       }
-      if(found) {
-        let temp = [...state.quantity_ordered];
-        temp[index] = Number(temp[index]) + 1;
-        state.quantity_ordered = [...temp];
-        console.log(state.quantity_ordered);
-      }
-      if(!found) {
-        state.items_ordered = [action.payload.name, ...state.items_ordered];
-        console.log(state.items_ordered);
-        state.quantity_ordered = [1, ...state.quantity_ordered];
-        console.log(state.quantity_ordered);
-      }
-      state.total_price += action.payload.price;
+      
+      state.total_price += price;
     },
     removeItem(state, action) {
-      let found = false;
-      let index = 0;
-      for(let i = 0; i < state.items_ordered.length; i++) {
-        if(state.items_ordered[i] === action.payload.name) {
-          found = true;
-          index = i;
-          break;
+      const { name, price } = action.payload;
+      const itemIndex = state.items_ordered.indexOf(name);
+      
+      if (itemIndex !== -1) {
+        state.quantity_ordered[itemIndex] -= 1;
+        
+        if (state.quantity_ordered[itemIndex] <= 0) {
+          state.items_ordered.splice(itemIndex, 1);
+          state.quantity_ordered.splice(itemIndex, 1);
         }
+        
+        state.total_price = Math.max(0, state.total_price - price);
       }
-      if(found) {
-        let temp = [...state.quantity_ordered];
-        temp[index] = Number(temp[index]) - 1;
-        state.quantity_ordered = [...temp];
-        console.log(state.quantity_ordered);
-        if(temp[index] === 0) {
-          temp = [...temp.slice(0, index), ...temp.slice(index + 1, temp.length + 1)];
-          state.quantity_ordered = [...temp];
-          state.items_ordered = [...state.items_ordered.slice(0, index), ...state.items_ordered.slice(index + 1, state.items_ordered.length + 1)];
-        }
-      }
-      let new_price = Number(state.total_price) - action.payload.price;
-      if(new_price < 0) {
-        new_price = 0;
-      }
-      state.total_price = new_price;
     },
     resetState(state) {
       state.items_ordered = [];

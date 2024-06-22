@@ -1,57 +1,49 @@
-import styles from './modules/employeeorder.module.css'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import styles from './modules/employeeorder.module.css';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-export const EmployeeOrder = (props) => {
+export const EmployeeOrder = ({ id }) => {
+    const [singleOrder, setSingleOrder] = useState(null);
+    const [choice, setChoice] = useState("");
 
-    const [singleOrder, setsingleOrder] = useState(null)
-    const [choice, setchoice] = useState("")
-
-    async function fetchOrder() {
+    const fetchOrder = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/order/${props.id}`)
-            console.log(res.data.order)
-            setsingleOrder(res.data.order)
+            const response = await axios.get(`http://localhost:8000/order/${id}`);
+            setSingleOrder(response.data.order);
         } catch (error) {
-            console.log(error)
+            console.error(error);
         }
-    }
+    };
 
-    const returnIndex = (arr1, item) => {
-        for(let i = 0; i < arr1.length;i++) {
-            if(item === arr1[i]) {
-                return i;
-            }
-        }   
-        return 0;
-    }
+    const returnIndex = (arr, item) => arr.findIndex(element => element === item);
 
     useEffect(() => {
-        fetchOrder()
-    }, [])
+        fetchOrder();
+    }, []);
 
-    async function handleClick(e) {
-        setchoice(e.target.value)
-        console.log(e.target.value)
-    }
+    const handleClick = (e) => {
+        setChoice(e.target.value);
+    };
 
-    async function handleCl() {
+    const handleStatusUpdate = async () => {
         try {
-            const res = await axios.put(`http://localhost:8000/order/updateOrderStatus`, { id: props.id, status: choice });
-            console.log(res.data.message);
+            const response = await axios.put(`http://localhost:8000/order/updateOrderStatus`, { id, status: choice });
+            console.log(response.data.message);
             fetchOrder();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
-    }
+    };
 
     return (
         <div className={styles.order_card}>
             <div className={styles.order_details}>
                 <p><strong>Items:</strong></p>
-                {singleOrder && singleOrder.items_ordered.map(item => <p key={item}>{item} x {Number(singleOrder.quantity_ordered[returnIndex(singleOrder.items_ordered,item)])}</p>)}
+                {singleOrder && singleOrder.items_ordered.map(item => (
+                    <p key={item}>{item} x {Number(singleOrder.quantity_ordered[returnIndex(singleOrder.items_ordered, item)])}</p>
+                ))}
                 <p><strong>Total Price:</strong> {singleOrder && Number(singleOrder.total_price)}</p>
-                <p><strong>Status:</strong>{singleOrder && singleOrder.status}</p>
+                <p><strong>Status:</strong> {singleOrder && singleOrder.status}</p>
             </div>
             <div className={styles.update_status}>
                 <select value={choice} onChange={handleClick}>
@@ -60,8 +52,8 @@ export const EmployeeOrder = (props) => {
                     <option value="ready">Ready</option>
                     <option value="delivered">Delivered</option>
                 </select>
-                <button onClick={handleCl}>Update Status</button>
+                <button onClick={handleStatusUpdate}>Update Status</button>
             </div>
         </div>
-    )
-}
+    );
+};
